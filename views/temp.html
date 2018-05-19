@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" action="/process">
+        {% csrf_token %}
+        {% if messages %}
+        <ul class="messages">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+        <h1>Registration</h1>
+        <input type="hidden" name="action" value="register">
+        <ul class="list-unstyled">
+            <li><label for=name>NAME:</label>
+                <input type="text" name="name"></li>
+            <li><label for=username>USERNAME:</label>
+                <input type="text" name="username"></li>
+            <li><label for=password>PASSWORD:</label>
+                <input type="password" name="password"></li>
+            <li><label for=confirm>CONFIRM PASSWORD:</label>
+                <input type="password" name="confirm"></li>
+            <li><label for=date>HIRED DATE:</label>
+                <input type=date name=hireddate></li>
+        </ul>
+        <input type="submit" value="Register">
+    </form>
+    <form method="post" action="/process">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="login">
+        <h1>Login</h1>
+        <ul class="list-unstyled">
+            <li><label for=username>USERNAME:</label>
+                <input type="text" name="username"></li>
+            <li><label for=password>PASSWORD:</label>
+                <input type="password" name="password"></li>
+        </ul>
+        <input type="submit" value="Login">
+    </form>
+</body>
+</html>
